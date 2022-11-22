@@ -1,7 +1,8 @@
-airtransportation <- read.csv("~/DESKTOP/AIRTRANS_CO2.csv")
+airtransportation <- read.csv("data/AIRTRANS_CO2.csv")
 View(airtransportation)
 
-library(dplyr)
+library("dplyr")
+library("ggplot2")
 
 airtransportation <- select(airtransportation, -15)
 airtransportation
@@ -39,12 +40,12 @@ data_visualization_1 <- ggplot(data = df1) +
   labs(x = "Years", y = "CO2 Emissions", title = "Changes in CO2 Emissions during COVID-19")
 data_visualization_1
 
-passengers_data %>%
-  drop_na()
+#passengers_data %>%
+#  drop_na()
 
 
 
-airtransportation <- read.csv("~/DESKTOP/AIRTRANS_CO2.csv")
+airtransportation <- read.csv("data/AIRTRANS_CO2.csv")
 View(airtransportation)
 
 # Count the total number of flights for each country.
@@ -76,7 +77,7 @@ country_emission_value <- airtransportation %>%
 country_emission_value
 
 #total co2 emission value cased by all transportation for each country from 2014 to 2018 (historical emissions dataset).
-historical_emissions <- read.csv("~/DESKTOP/historical_emissions.csv")
+historical_emissions <- read.csv("data/historical_emissions.csv")
 View(historical_emissions)
 
 country_emission_all <- historical_emissions %>%
@@ -134,11 +135,13 @@ all_transportation
 all_transportation <- 1.10231 * (all_transportation)
 all_transportation
 
-trans_all_comparsion <- data.frame(column_1, column_2, column_3)
+trans_all_comparsion <- data.frame(column_1, airplane, all_transportation)
 trans_all_comparsion
 
-install.packages("reshape")
-install.packages("reshape2")
+#install.packages("reshape")
+#install.packages("reshape2")
+library("reshape")
+library("reshape2")
 
 trans_all_comparsion.melt <- reshape2::melt(trans_all_comparsion, id ="column_1")
 trans_all_comparsion.melt
@@ -151,6 +154,7 @@ chart_3 <- chart_3 + labs(title = "CO2 Emissions: Airplanes vs. all Transportati
                           , fill = "Transportation Type"
                           , x = "Countries"
                           , y = "CO2 Emissions") 
+chart_3 <- chart_3 + scale_y_log10()
 chart_3
 
 chart_3 + coord_flip()
