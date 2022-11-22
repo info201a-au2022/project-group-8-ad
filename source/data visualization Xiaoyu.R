@@ -123,11 +123,16 @@ colnames(all_greater_150)[2] ="CO2 by all trans"
 column_1 <- airtrans_greater_150$Country
 column_1
   
-column_2 <- airtrans_greater_150$`CO2 by airtrans`
-column_2
+airplane <- airtrans_greater_150$`CO2 by airtrans`
+airplane
 
-column_3 <- all_greater_150$`CO2 by all trans`
-column_3
+
+all_transportation <- all_greater_150$`CO2 by all trans`
+all_transportation
+
+# convert mtco2 to tco2
+all_transportation <- 1.10231 * (all_transportation)
+all_transportation
 
 trans_all_comparsion <- data.frame(column_1, column_2, column_3)
 trans_all_comparsion
