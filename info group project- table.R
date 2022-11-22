@@ -9,7 +9,8 @@ Co2_Dataset <- read.csv("/Users/rmjos/Downloads/AIRTRANS_CO2.csv")
 View(Co2_Dataset)
 
 Co2_Dataset <- Co2_Dataset %>% 
-  mutate(TIME = as.numeric(TIME))
+  mutate(TIME = as.numeric(TIME)) %>% 
+  rename("Year" = TIME )
 
 View(Co2_Dataset)
 
@@ -20,7 +21,7 @@ adjusted_co2 <- Co2_Dataset %>%
   summarize(
     Country, 
     Flight.type,
-    TIME,
+    Year,
     Pollutant,
     SOURCE,
     Source.of.emissions,
@@ -56,7 +57,8 @@ passenger_dataset <- passenger_dataset %>%
     "Gateway_world_areacode" = usg_wac,
     "US_Airport_ID" = usg_apt_id,
     "Foreign_gateway_ID" = fg_apt_id,
-    "Foreign_gateway_code" = fg_wac
+    "Foreign_gateway_world_code" = fg_wac,
+    "Foreign_Airport_code" = fg_apt
   )
 
 View(passenger_dataset)
@@ -78,8 +80,8 @@ View(adjusted_passenger_dataset)
 
 #combined datasets
 
-combined_datasets <- left_join(adjusted_co2, adjusted_passenger_dataset, 
-                               by = c("TIME" = "Year"))
+combined_datasets <- merge(adjusted_co2, adjusted_passenger_dataset, 
+                               by = ("Year"))
 
 View(combined_datasets)
 
