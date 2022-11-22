@@ -52,8 +52,11 @@ View(passenger_dataset)
 
 passenger_dataset <- passenger_dataset %>% 
   rename(
+    "US_gateway_Code" = usg_apt,
     "Gateway_world_areacode" = usg_wac,
-    "Foreign_Airport_ID" = fg_apt_id,
+    "US_Airport_ID" = usg_apt_id,
+    "Foreign_gateway_ID" = fg_apt_id,
+    "Foreign_gateway_code" = fg_wac
   )
 
 View(passenger_dataset)
