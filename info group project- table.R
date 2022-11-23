@@ -1,6 +1,8 @@
 
 library(tidyverse)
 
+memory.limit()
+
 
 
 #Co2 Dataset
@@ -44,6 +46,23 @@ View(adjusted_historical_emissions)
 
 
 
+#df1_new<-as.data.frame(t(df1))
+#df1_new
+
+#m1 <- t(df1)
+#d2 <- data.frame(r1= row.names(m1), m1, row.names=NULL)
+
+H_E_v1 <- t(historical_emissions_new[country])
+H_E_v2<- data.frame(r1= row.names(H_E_v1), H_E_v1, row.names= NULL)
+
+View(H_E_v2)
+
+historical_emissions_new <- as.data.frame(t(historical_emissions))
+
+View(historical_emissions_new)
+
+
+
 
 #US passenger dataset
 passenger_dataset <- read.csv("/Users/rmjos/Downloads/International_Report_Passengers.csv")
@@ -80,8 +99,20 @@ View(adjusted_passenger_dataset)
 
 #combined datasets
 
-combined_datasets <- merge(adjusted_co2, adjusted_passenger_dataset, 
-                               by = ("Year"))
+
+combined_Datasets <- 
+  merge(
+  x = adjusted_co2,
+  y = adjusted_passenger_dataset,
+  by = "Year",
+  all = TRUE
+)
+
+
+
+
+
+combined_datasets <- merge(adjusted_co2, adjusted_passenger_dataset)
 
 View(combined_datasets)
 
