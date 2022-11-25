@@ -1,4 +1,4 @@
-airtransportation <- read.csv("data/AIRTRANS_CO2.csv")
+airtransportation <- read.csv("../data/AIRTRANS_CO2.csv")
 View(airtransportation)
 
 library("dplyr")
@@ -45,7 +45,7 @@ data_visualization_1
 
 
 
-airtransportation <- read.csv("data/AIRTRANS_CO2.csv")
+airtransportation <- read.csv("../data/AIRTRANS_CO2.csv")
 View(airtransportation)
 
 # Count the total number of flights for each country.
@@ -77,7 +77,7 @@ country_emission_value <- airtransportation %>%
 country_emission_value
 
 #total co2 emission value cased by all transportation for each country from 2014 to 2018 (historical emissions dataset).
-historical_emissions <- read.csv("data/historical_emissions.csv")
+historical_emissions <- read.csv("../data/historical_emissions.csv")
 View(historical_emissions)
 
 country_emission_all <- historical_emissions %>%

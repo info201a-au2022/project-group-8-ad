@@ -5,7 +5,7 @@ library(tidyverse)
 library(tidyr)
 
 
-airtransportation <- read.csv("~/DESKTOP/AIRTRANS_CO2.csv")
+airtransportation <- read.csv("../data/AIRTRANS_CO2.csv")
 
 airtransportation <- select(airtransportation, -15)
 airtransportation
@@ -44,7 +44,7 @@ data_visualization_1 <- ggplot(data = df1) +
 data_visualization_1
  
 
-passengers_data <- read.csv("~/DESKTOP/Air_Travel_Passengers.csv")
+passengers_data <- read.csv("../data/Air_Travel_Passengers.csv")
 
 passengers_data <- select(passengers_data, -6:-7)
 

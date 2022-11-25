@@ -8,11 +8,11 @@ library("maps")
 library("sp")
 
 #Read Flight Data
-flight_data <- read.csv("data/AIRTRANS_CO2.csv", stringsAsFactors = F)
+flight_data <- read.csv("../data/AIRTRANS_CO2.csv", stringsAsFactors = F)
 
 #Read Shape Data
 world_spdf <- readOGR( 
-  dsn= paste0(getwd(),"/source/world_shape_file/") , 
+  dsn= paste0(getwd(),"/world_shape_file/") , 
   layer="TM_WORLD_BORDERS_SIMPL-0.3",
   verbose=FALSE
 )
