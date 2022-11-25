@@ -1,5 +1,4 @@
 airtransportation <- read.csv("../data/AIRTRANS_CO2.csv")
-View(airtransportation)
 
 library("dplyr")
 library("ggplot2")
@@ -43,11 +42,6 @@ data_visualization_1
 #passengers_data %>%
 #  drop_na()
 
-
-
-airtransportation <- read.csv("../data/AIRTRANS_CO2.csv")
-View(airtransportation)
-
 # Count the total number of flights for each country.
 country_flight_numbers <- airtransportation %>%
   group_by(Country) %>%
@@ -78,7 +72,6 @@ country_emission_value
 
 #total co2 emission value cased by all transportation for each country from 2014 to 2018 (historical emissions dataset).
 historical_emissions <- read.csv("../data/historical_emissions.csv")
-View(historical_emissions)
 
 country_emission_all <- historical_emissions %>%
   rowwise() %>%
@@ -94,7 +87,7 @@ flight_bar_chart <- ggplot(data = flight_numbers_greater_150) +
   labs(x = "Numbers of flights", y = "Coutries", title = "Total number of Flights by Country from 2014 to 2018")
 flight_bar_chart
 
-flight_bar_chart + coord_flip()
+flight_bar_chart <- flight_bar_chart + coord_flip()
 
 # Change the country name of 'Turkey'(in country_emission_all) to 'Türkiye'
 country_emission_all <- country_emission_all %>%
@@ -155,8 +148,7 @@ chart_3 <- chart_3 + labs(title = "CO2 Emissions: Airplanes vs. all Transportati
                           , x = "Countries"
                           , y = "CO2 Emissions") 
 chart_3 <- chart_3 + scale_y_log10()
-chart_3
 
-chart_3 + coord_flip()
+chart_3 <- chart_3 + coord_flip()
 
 
