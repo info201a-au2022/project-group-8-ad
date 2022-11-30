@@ -30,6 +30,10 @@ adjusted_co2 <- Co2_Dataset %>%
 
 View(adjusted_co2)
 
+small_co2 <- head(adjusted_co2, 10)
+
+View(small_co2)
+
 
 
 #historical emissions data set
@@ -50,14 +54,12 @@ View(adjusted_historical_emissions)
 #m1 <- t(df1)
 #d2 <- data.frame(r1= row.names(m1), m1, row.names=NULL)
 
-H_E_v1 <- t(historical_emissions_new[country])
-H_E_v2<- data.frame(r1= row.names(H_E_v1), H_E_v1, row.names= NULL)
+historical_emissions_new <- as.data.frame(t(adjusted_historical_emissions))
 
-View(H_E_v2)
-
-historical_emissions_new <- as.data.frame(t(historical_emissions))
+historical_emissions_new_v1 <- as.data.frame(t(historical_emissions_new))
 
 View(historical_emissions_new)
+
 
 
 
@@ -94,25 +96,26 @@ adjusted_passenger_dataset <- passenger_dataset %>%
 View(adjusted_passenger_dataset)
 
 
+small_passenger_ds <- head(adjusted_passenger_dataset, 10)
+
+View(small_passenger_ds)
+
 
 #combined datasets
 
 
-combined_Datasets <- 
+smol_combined <- 
   merge(
-  x = adjusted_co2,
-  y = adjusted_passenger_dataset,
-  by = "Year",
-  all = TRUE
-)
+    x = small_co2,
+    y = small_passenger_ds,
+    by = "Year",
+    all = TRUE
+  )
+
+View(smol_combined)
 
 
 
-
-
-combined_datasets <- merge(adjusted_co2, adjusted_passenger_dataset)
-
-View(combined_datasets)
 
 
 
