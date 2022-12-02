@@ -1,4 +1,5 @@
 
+
 library(tidyverse)
 
 
@@ -9,15 +10,16 @@ Co2_Dataset <- read.csv("/Users/rmjos/Downloads/AIRTRANS_CO2.csv")
 View(Co2_Dataset)
 
 Co2_Dataset <- Co2_Dataset %>% 
-  mutate(TIME = as.numeric(TIME)) %>% 
-  rename("Year" = TIME )
+  rename("Year" = Time )
 
 View(Co2_Dataset)
 
 
 adjusted_co2 <- Co2_Dataset %>% 
   group_by(Country) %>% 
-  filter(Flight.type == "Passenger flights", na.rm = TRUE) %>% 
+  filter(Flight.type == "Passenger flights", na.rm = TRUE) %>%
+  filter(Country == "United States", na.rm = TRUE) %>% 
+  subset(Year> "2016" & Year < "2021") %>% 
   summarize(
     Country, 
     Flight.type,
@@ -26,41 +28,13 @@ adjusted_co2 <- Co2_Dataset %>%
     SOURCE,
     Source.of.emissions,
     Value
-    )
+  )
 
 View(adjusted_co2)
 
-small_co2 <- head(adjusted_co2, 10)
+small_co2 <- head(adjusted_co2, 200)
 
 View(small_co2)
-
-
-
-#historical emissions data set
-historical_emissions <- read.csv("/Users/rmjos/Downloads/historical_emissions.csv")
-View(historical_emissions)
-
-adjusted_historical_emissions <- historical_emissions %>% 
-  group_by(Country) %>% 
-  select(-2, -3)
-
-View(adjusted_historical_emissions)
-
-
-
-#df1_new<-as.data.frame(t(df1))
-#df1_new
-
-#m1 <- t(df1)
-#d2 <- data.frame(r1= row.names(m1), m1, row.names=NULL)
-
-historical_emissions_new <- as.data.frame(t(adjusted_historical_emissions))
-
-historical_emissions_new_v1 <- as.data.frame(t(historical_emissions_new))
-
-View(historical_emissions_new)
-
-
 
 
 
@@ -80,39 +54,78 @@ passenger_dataset <- passenger_dataset %>%
     "Foreign_Airport_code" = fg_apt
   )
 
-View(passenger_dataset)
-
-
-
-adjusted_passenger_dataset <- passenger_dataset %>% 
-  group_by(Year) %>% 
+passenger_dataset_1 <- passenger_dataset %>% 
   summarize(
     Year,
     type,
     Charter,
     Total
+  ) %>% 
+  subset(Year> "2016" & Year < "2021")
+  
+  View(passenger_dataset_1)
+
+passenger_dataset_smol <- head(passenger_dataset_1, 200)
+
+
+#US Departures
+
+departure_dataset <- read.csv("/Users/rmjos/Downloads/International_Report_Departures.csv")
+
+View(departure_dataset)
+
+
+
+departure_dataset <- departure_dataset %>% 
+  rename(
+    "US_gateway_Code" = usg_apt,
+    "Gateway_world_areacode" = usg_wac,
+    "US_Airport_ID" = usg_apt_id,
+    "Foreign_gateway_ID" = fg_apt_id,
+    "Foreign_gateway_world_code" = fg_wac,
+    "Foreign_Airport_code" = fg_apt
   )
 
-View(adjusted_passenger_dataset)
+departure_dataset_1 <- departure_dataset %>% 
+  summarize(
+    Year,
+    type,
+    Charter,
+    Total
+  ) %>% 
+  subset(Year> "2016" & Year < "2021")
+  
+View(departure_dataset_1)
+
+departure_dataset_smol <- head(departure_dataset_1, 200)
+
+View(departure_dataset_smol)
 
 
-small_passenger_ds <- head(adjusted_passenger_dataset, 10)
-
-View(small_passenger_ds)
+#combining
 
 
-#combined datasets
-
-
-smol_combined <- 
+smol_combined_partial <- 
   merge(
-    x = small_co2,
-    y = small_passenger_ds,
-    by = "Year",
-    all = TRUE
+    x = passenger_dataset_smol,
+    y = departure_dataset_smol,
+    by = "Year"
   )
 
-View(smol_combined)
+smol_all_combined <- 
+  merge(
+    x = smol_combined_partial,
+    y = small_co2,
+    by = "Year"
+  )
+
+View(smol_all_combined)
+
+
+
+
+
+
 
 
 
