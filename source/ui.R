@@ -29,7 +29,7 @@ page_two <- tabPanel(
     h2(strong("Widgets go here..."))
   ),
   mainPanel(
-    p("Charts go here...")
+    leafletOutput("co2_map")
   )
 )
 

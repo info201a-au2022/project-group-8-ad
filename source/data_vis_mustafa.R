@@ -23,6 +23,22 @@ filtered_flight_data <- flight_data %>%
   filter(Value == max(Value)) %>% 
   distinct(Value)
 
+filtered_flight_data$Country[filtered_flight_data$Country == "China (People's Republic of)"] <- "China"
+filtered_flight_data$Country[filtered_flight_data$Country == "Cabo Verde"] <- "Cape Verde"
+filtered_flight_data$Country[filtered_flight_data$Country == "Côte d'Ivoire"] <- "Cote d'Ivoire"
+filtered_flight_data$Country[filtered_flight_data$Country == "Democratic People's Republic of Korea"] <- "Korea, Democratic People's Republic of"
+filtered_flight_data$Country[filtered_flight_data$Country == "Eswatini"] <- "Swaziland"
+filtered_flight_data$Country[filtered_flight_data$Country == "Iran"] <- "Iran (Islamic Republic of)"
+filtered_flight_data$Country[filtered_flight_data$Country == "Korea"] <- "Korea, Republic of"
+filtered_flight_data$Country[filtered_flight_data$Country == "Libya"] <- "Libyan Arab Jamahiriya"
+filtered_flight_data$Country[filtered_flight_data$Country == "Micronesia"] <- "Micronesia, Federated States of"
+filtered_flight_data$Country[filtered_flight_data$Country == "Moldova"] <- "Republic of Moldova"
+filtered_flight_data$Country[filtered_flight_data$Country == "Myanmar"] <- "Burma"
+filtered_flight_data$Country[filtered_flight_data$Country == "North Macedonia"] <- "The former Yugoslav Republic of Macedonia"
+filtered_flight_data$Country[filtered_flight_data$Country == "Slovak Republic"] <- "Slovakia"
+filtered_flight_data$Country[filtered_flight_data$Country == "Tanzania"] <- "United Republic of Tanzania"
+filtered_flight_data$Country[filtered_flight_data$Country == "Türkiye"] <- "Turkey"
+
 #Combine dataframes
 colnames(filtered_flight_data)[1] <- "NAME"
 world_spdf_with_values <- sp::merge(world_spdf, filtered_flight_data, by = "NAME", all=F)
@@ -33,7 +49,7 @@ mypalette <- colorBin( palette="YlOrBr", domain=world_spdf_with_values@data$Valu
 
 mytext <- paste(
   "Country: ", world_spdf_with_values@data$NAME,"<br/>", 
-  "Value: ", world_spdf_with_values@data$Value,
+  "Value: ", round(world_spdf_with_values@data$Value),
   sep="") %>%
   lapply(htmltools::HTML)
 
