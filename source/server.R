@@ -6,7 +6,7 @@ source("data_vis_mustafa.R")
 shinyServer(function(input, output) {
   
   output$co2_map <- renderLeaflet({
-    value_map
+    get_filtered_flight_data_map(input$map_slider)
   })
   
 })

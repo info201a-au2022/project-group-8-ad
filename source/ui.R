@@ -28,7 +28,8 @@ page_two <- tabPanel(
   "Interactive Panel One", 
   headerPanel("Interactive Panel One"),
   sidebarPanel(
-    h2(strong("Widgets go here..."))
+    sliderInput("map_slider", label = h3("Select Year"), min = 2014, 
+                max = 2022, value = 2014)
   ),
   mainPanel(
     leafletOutput("co2_map"),
