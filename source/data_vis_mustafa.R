@@ -60,8 +60,8 @@ value_map <- leaflet(world_spdf_with_values) %>%
     fillColor = ~mypalette(Value), 
     stroke=TRUE, 
     fillOpacity = 0.9, 
-    color="white", 
-    weight=0.3,
+    color="black", 
+    weight=0.9,
     label = mytext,
     labelOptions = labelOptions( 
       style = list("font-weight" = "normal", padding = "3px 8px"), 
