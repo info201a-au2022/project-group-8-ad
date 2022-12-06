@@ -10,10 +10,17 @@ page_one <- tabPanel(
   
   mainPanel(
     h4("What is the problem domain?"),
-    p("add text here..."),
+    p("With climate change harming the planet, one of the main concerns with air travel is how much CO2 is produced. CO2 is directly linked to warming the atmosphere, shrinking the ozone layer, and eroding the earth’s natural protection against harmful UV rays from the sun. Some of the negative can be seen through melting glaciers that contribute to rising sea levels. 
+      The outcome comes at a cost of damaging, engulfing, and even submerging natural ecosystems and pacific islands. 
+      Government officials from all over the world have pledged their efforts to stop and reverse climate change in response to the research."),
     p(),
     h4("What are the research questions?"),
-    p("add text here..."),
+    p("In our research project, we examined patterns of air traffic in the US and globally through 3 questions:
+
+What countries produce the  highest and lowest CO2 emissions?
+How did COVID-19 play a role in affecting CO2 emissions?
+Does the number of domestic and international flights in a country impact total CO2 emissions?
+"),
     p(),
     h4("What data was analyzed?"),
     p("add text here..."),
