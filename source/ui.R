@@ -15,11 +15,11 @@ page_one <- tabPanel(
       Government officials from all over the world have pledged their efforts to stop and reverse climate change in response to the research."),
     p(),
     h4("What are the research questions?"),
-    p("In our research project, we examined patterns of air traffic in the US and globally through 3 questions:
-
-What countries produce the  highest and lowest CO2 emissions?
-How did COVID-19 play a role in affecting CO2 emissions?
-Does the number of domestic and international flights in a country impact total CO2 emissions?
+    p("In our research project, we examined patterns of air traffic in the US and globally through 3 questions:  
+  
+  What countries produce the  highest and lowest CO2 emissions?
+  How did COVID-19 play a role in affecting CO2 emissions?
+  Does the number of domestic and international flights in a country impact total CO2 emissions?
 "),
     p(),
     h4("What data was analyzed?"),
@@ -93,13 +93,21 @@ page_five <- tabPanel(
   
   mainPanel(
     h4("Takeaway #1"),
-    p("add text here..."),
+    p("The countries who were leaders in high CO2 emissions were consistently leading on our other datasets.
+      Countries such as the United States, China, and the UAE were consistently high in overall CO2 rates and flight emissions. 
+      There was no significant difference between the 2 sets when it came to leaders in emission levels. "),
     p(),
     h4("Takeaway #2"),
-    p("add text here..."),
+    p("COVID-19 impacted the airline industry significantly. Even before pandemic, the US can be seen as leaders in all out datasets when it comes to CO2 emissions. 
+      When the pandemic occurred, US passenger levels fell significantly in 2020 and have yet to return in 2022. 
+      Even the borders opening up globally, passengers haven’t returned in the volume they had before the pandemic."),
     p(),
     h4("Takeaway #3"),
-    p("add text here...")
+    p("Economic world leaders had a tendency to emit more CO2 emissions. 
+      Economic superpowers such as the US and China were shown to emit the most CO2 levels. 
+      As the biggest contributors, climate change efforts should be concentrated in these countries. 
+      These countries are seen as developed countries with resources and international leverage to create lasting and impactful. 
+      Their efforts in reducing CO2 emissions in the airline industry would help reduce CO2 emissions worldwide and provide an example for countries whose CO2 emissions are lower.")
   )
 )
 
