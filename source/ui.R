@@ -26,17 +26,17 @@ Does the number of domestic and international flights in a country impact total 
     p("add text here..."),
     p(),
     h4("What are the key findings?"),
-    p("The United States, China, and the UAE are shown to have the highest CO2 emissions. 
+    p("1. The United States, China, and the UAE are shown to have the highest CO2 emissions. 
     All three of these countries are major contributors when it comes to international trade. 
     This could point to trade being a bigger aspect of CO2 emissions than previously thought. 
-    Through this lens, experts can reframe efforts in reducing emissions and focus on where the greatest CO2 emissions are in international trading. 
+    Through this lens, experts can reframe efforts in reducing emissions and focus on where the greatest CO2 emissions are in international trading.   
 
-  In 2020 the amount of passengers dramatically decreased in the wake of covid. Even several years since the start of the pandemic, the passenger rates have not returned to pre covid levels. 
-  The decreased passenger levels could indicate that CO2 emissions have decreased because of lower passenger rates. 
+  2. In 2020 the amount of passengers dramatically decreased in the wake of covid. Even several years since the start of the pandemic, the passenger rates have not returned to pre covid levels. 
+  The decreased passenger levels could indicate that CO2 emissions have decreased because of lower passenger rates.  
   
-  In comparing flight transportation with over all transportation per country, countries with higher flight emissions also lead with overall transportation CO2 emissions. 
+  3. In comparing flight transportation with over all transportation per country, countries with higher flight emissions also lead with overall transportation CO2 emissions. 
   The finding also showed that emissions from flights did not make up over half of overall emissions from the countries analyzed. 
-  Although air transportation makes up a substantial part of CO2 emissions, there are still other major factors in CO2 emissions outside of flights. 
+  Although air transportation makes up a substantial part of CO2 emissions, there are still other major factors in CO2 emissions outside of flights.  
 "),
     p()
   )
