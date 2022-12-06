@@ -3,6 +3,7 @@ library(ggplot2)
 library(DT)
 
 source("data_vis_mustafa.R")
+source("data_vis_Xiaoyu.R")
 
 page_one <- tabPanel(
   "Introduction",
@@ -72,10 +73,10 @@ page_three <- tabPanel(
   "Interactive Panel Two", 
   headerPanel("Interactive Panel Two"),
   sidebarPanel(
-    h2(strong("Widgets go here..."))
+    sliderInput("flight_count_slider", label = h3("flight count"), min = 100, max = 200, value = c(140, 160))
   ),
   mainPanel(
-    p("Charts go here...")
+    plotOutput("flight_bar", height = "650px")
   )
 )
 
