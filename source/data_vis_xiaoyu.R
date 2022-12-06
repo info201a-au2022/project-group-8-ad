@@ -207,9 +207,9 @@ get_co2_chart <- function(upper_count, lower_count) {
   chart_3 <- ggplot(data = country_emission_values.melt, aes(x = Country, y = value, fill = variable))
   chart_3 <- chart_3 + geom_col(position = "dodge")
   chart_3 <- chart_3 + theme_classic()
-  chart_3 <- chart_3 + labs(title = "CO2 Emissions: Airplanes vs. all Transportation"
-                            , subtitle = "Countries with more than 150 recorded flights from 2014 to 2018"
-                            , fill = "Transportation Type"
+  chart_3 <- chart_3 + labs(title = "CO2 Emissions: Airplanes vs. all Possible Factors"
+                            , subtitle = "Emissions value from 2014 to 2018"
+                            , fill = "Sources of CO2 emissions"
                             , x = "Countries"
                             , y = "CO2 Emissions") 
   chart_3 <- chart_3 + scale_y_log10()
