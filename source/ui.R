@@ -76,7 +76,8 @@ page_three <- tabPanel(
     sliderInput("flight_count_slider", label = h3("flight count"), min = 100, max = 200, value = c(140, 160))
   ),
   mainPanel(
-    plotOutput("flight_bar", height = "650px")
+    plotOutput("flight_bar", height = "650px"),
+    plotOutput("co2_bar", height = "650px")
   )
 )
 

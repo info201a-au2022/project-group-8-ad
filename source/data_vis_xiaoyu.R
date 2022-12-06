@@ -195,25 +195,26 @@ get_flight_chart <- function(upper_count, lower_count) {
   flight_bar_chart <- flight_bar_chart + coord_flip()
   return(flight_bar_chart)
 }
+get_co2_chart <- function(upper_count, lower_count) {
+  test_2 <- get_flight_chart(upper_count, lower_count)
+  country_df <- data.frame(test_2$data$Country)
+  colnames(country_df)[1] <- "Country"
+  country_emissions <- left_join(country_df, country_emission_value, by = "Country")
+  country_emission_values <- left_join(country_emissions, country_emission_all, by = "Country")
 
-country_df <- data.frame(test_2$data$Country)
-colnames(country_df)[1] <- "Country"
-country_emissions <- left_join(country_df, country_emission_value, by = "Country")
-country_emission_values <- left_join(country_emissions, country_emission_all, by = "Country")
+  country_emission_values.melt <- reshape2::melt(country_emission_values, id = "Country")
 
-country_emission_values.melt <- reshape2::melt(country_emission_values, id = "Country")
+  chart_3 <- ggplot(data = country_emission_values.melt, aes(x = Country, y = value, fill = variable))
+  chart_3 <- chart_3 + geom_col(position = "dodge")
+  chart_3 <- chart_3 + theme_classic()
+  chart_3 <- chart_3 + labs(title = "CO2 Emissions: Airplanes vs. all Transportation"
+                            , subtitle = "Countries with more than 150 recorded flights from 2014 to 2018"
+                            , fill = "Transportation Type"
+                            , x = "Countries"
+                            , y = "CO2 Emissions") 
+  chart_3 <- chart_3 + scale_y_log10()
 
-chart_3 <- ggplot(data = country_emission_values.melt, aes(x = Country, y = value, fill = variable))
-chart_3 <- chart_3 + geom_col(position = "dodge")
-chart_3 <- chart_3 + theme_classic()
-chart_3 <- chart_3 + labs(title = "CO2 Emissions: Airplanes vs. all Transportation"
-                          , subtitle = "Countries with more than 150 recorded flights from 2014 to 2018"
-                          , fill = "Transportation Type"
-                          , x = "Countries"
-                          , y = "CO2 Emissions") 
-chart_3 <- chart_3 + scale_y_log10()
-
-chart_3 <- chart_3 + coord_flip()
-chart_3
-
+  chart_3 <- chart_3 + coord_flip()
+  return(chart_3)
+}
 
