@@ -51,10 +51,21 @@ country_flight_numbers
 country_flight_numbers <- select(country_flight_numbers, -3)
 country_flight_numbers
 
-# list of countries with more than 150 flights.
+# xiaoyu's first funtion for total number of flights chart.
+get_flight_numbers <- function(upper_count, lower_count) {
+  flight_numbers <- country_flight_numbers %>%
+    group_by(Country) %>%
+    filter(count > lower_count & count < upper_count)
+  return(flight_numbers)
+  
+}
+test <- get_flight_numbers(140, 130)
+test
+
+
 flight_numbers_greater_150 <- country_flight_numbers %>%
   group_by(Country) %>%
-  filter(count > 150)
+  filter(count > 110 & count < 130)
 flight_numbers_greater_150
 
 # Rename 'China(People's Republic of)', that shows in flight_numbers_greater_100,to 'China'
@@ -62,7 +73,7 @@ flight_numbers_greater_150 <- flight_numbers_greater_150 %>%
   mutate(Country = as.character(Country)) %>%
   mutate(Country = replace(Country, Country == "China (People's Republic of)", 'China'))
 flight_numbers_greater_150
-  
+
 
 # total co2 emission value caused by air transportation for each country from 2014 to 2018 (airtansportation dataset).
 country_emission_value <- airtransportation %>%
@@ -82,12 +93,26 @@ country_emission_all <- select(country_emission_all, -2:-34)
 country_emission_all
 
 # bar chart of country flight numbers.(Third chart)
-flight_bar_chart <- ggplot(data = flight_numbers_greater_150) +
-  geom_col(mapping = aes(x = Country, y = count)) +
-  labs(x = "Numbers of flights", y = "Coutries", title = "Total number of Flights by Country from 2014 to 2018")
+flight_bar_chart <- ggplot(data = test) +
+  geom_col(mapping = aes(x = Country, y = count), color = "white", fill = "orange") +
+  labs(x = "Countries", y = "Numbers of flights", title = "Total number of Flights by Country from 2014 to 2018")
 flight_bar_chart
 
 flight_bar_chart <- flight_bar_chart + coord_flip()
+flight_bar_chart
+
+# xiaoyu's function for total number of flights chart
+get_flight_chart <- function(upper_count, lower_count) {
+  flight_numbers <- get_flight_numbers(upper_count, lower_count)
+  flight_bar_chart <- ggplot(data = flight_numbers) +
+    geom_col(mapping = aes(x = Country, y = count), color = "white", fill = "orange") +
+    labs(x = "Countries", y = "Numbers of flights", title = "Total number of Flights by Country from 2014 to 2018")
+  
+  flight_bar_chart <- flight_bar_chart + coord_flip()
+  return(flight_bar_chart)
+}
+test_2 <- get_flight_chart(160, 130)
+test_2
 
 # Change the country name of 'Turkey'(in country_emission_all) to 'Türkiye'
 country_emission_all <- country_emission_all %>%
@@ -109,46 +134,87 @@ airtrans_greater_150
 all_greater_150 <- country_emission_all[c(3, 20, 32, 19, 24, 28, 17, 15, 8, 35, 38, 56, 16, 21, 125, 7, 22, 58, 5, 10, 25, 26, 37, 2, 85, 12, 9, 18), ]
 all_greater_150
 
+# filter out 20 countries that the flights number between 130-150 from 'country_emission_value.'
+airtrans_between_130_150 <- country_emission_value[c(183, 175, 170, 165, 162, 135, 133, 129, 120, 84, 83, 75, 73, 59, 57, 50, 46, 43, 15, 1), ]
+airtrans_between_130_150
+country_df <- data.frame(test_2$data$Country)
+colnames(country_df)[1] <- "Country"
+country_emissions <- left_join(country_df, country_emission_value, by = "Country")
+country_emission_values <- left_join(country_emissions, country_emission_all, by = "Country")
+
+
+# filter out 20 countries that the flights number between 130-150 from 'country_emission_all.'
+all_between_130_150 <- country_emission_all[c(27, 36, 90, 51, 79, 65, 40, 115, 99, 29, 92, 6, 159, 64, 69, 55, 81, 46, 47, 136), ]
+all_between_130_150
+
 #create a dataset that combines 'airtrans_greater_150' and 
 
-colnames(airtrans_greater_150)[2] ="CO2 by airtrans"
-colnames(all_greater_150)[2] ="CO2 by all trans"
+colnames(airtrans_between_130_150)[2] ="CO2 by airtrans"
+colnames(all_between_130_150)[2] ="CO2 by all trans"
 
-column_1 <- airtrans_greater_150$Country
-column_1
-  
-airplane <- airtrans_greater_150$`CO2 by airtrans`
+
+column_2 <- test_2$data$Country
+column_2
+
+airplane <- airtrans_between_130_150$`CO2 by airtrans`
 airplane
 
 
-all_transportation <- all_greater_150$`CO2 by all trans`
+all_transportation <- all_between_130_150$`CO2 by all trans`
 all_transportation
 
 # convert mtco2 to tco2
 all_transportation <- 1.10231 * (all_transportation)
 all_transportation
 
-trans_all_comparsion <- data.frame(column_1, airplane, all_transportation)
-trans_all_comparsion
+# trans_all_comparsion <- data.frame(column_2, airplane, all_transportation)
+# trans_all_comparsion
 
 #install.packages("reshape")
 #install.packages("reshape2")
 library("reshape")
 library("reshape2")
 
-trans_all_comparsion.melt <- reshape2::melt(trans_all_comparsion, id ="column_1")
-trans_all_comparsion.melt
+# trans_all_comparsion.melt <- reshape2::melt(trans_all_comparsion, id ="column_2")
+# trans_all_comparsion.melt
 
-chart_3 <- ggplot(data = trans_all_comparsion.melt, aes(x = column_1, y = value, fill = variable))
-chart_3 <- chart_3 + geom_col(position = "dodge")
-chart_3 <- chart_3 + theme_classic()
-chart_3 <- chart_3 + labs(title = "CO2 Emissions: Airplanes vs. all Transportation"
-                          , subtitle = "Countries with more than 150 recorded flights from 2014 to 2018"
-                          , fill = "Transportation Type"
-                          , x = "Countries"
-                          , y = "CO2 Emissions") 
-chart_3 <- chart_3 + scale_y_log10()
+get_flight_numbers <- function(upper_count, lower_count) {
+  flight_numbers <- country_flight_numbers %>%
+    group_by(Country) %>%
+    filter(count > lower_count & count < upper_count)
+  return(flight_numbers)
+  
+}
 
-chart_3 <- chart_3 + coord_flip()
+get_flight_chart <- function(upper_count, lower_count) {
+  flight_numbers <- get_flight_numbers(upper_count, lower_count)
+  flight_bar_chart <- ggplot(data = flight_numbers) +
+    geom_col(mapping = aes(x = Country, y = count), color = "white", fill = "orange") +
+    labs(x = "Countries", y = "Numbers of flights", title = "Total number of Flights by Country from 2014 to 2018")
+  
+  flight_bar_chart <- flight_bar_chart + coord_flip()
+  return(flight_bar_chart)
+}
+get_co2_chart <- function(upper_count, lower_count) {
+  test_2 <- get_flight_chart(upper_count, lower_count)
+  country_df <- data.frame(test_2$data$Country)
+  colnames(country_df)[1] <- "Country"
+  country_emissions <- left_join(country_df, country_emission_value, by = "Country")
+  country_emission_values <- left_join(country_emissions, country_emission_all, by = "Country")
 
+  country_emission_values.melt <- reshape2::melt(country_emission_values, id = "Country")
+
+  chart_3 <- ggplot(data = country_emission_values.melt, aes(x = Country, y = value, fill = variable))
+  chart_3 <- chart_3 + geom_col(position = "dodge")
+  chart_3 <- chart_3 + theme_classic()
+  chart_3 <- chart_3 + labs(title = "CO2 Emissions: Airplanes vs. all Possible Factors"
+                            , subtitle = "Emissions value from 2014 to 2018"
+                            , fill = "Sources of CO2 emissions"
+                            , x = "Countries"
+                            , y = "CO2 Emissions") 
+  chart_3 <- chart_3 + scale_y_log10()
+
+  chart_3 <- chart_3 + coord_flip()
+  return(chart_3)
+}
 
