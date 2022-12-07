@@ -21,6 +21,7 @@ data_visualization_1
 data_visualization_2
 ```
 
+
 ```{r mustafa, echo=FALSE}
 value_map
 ```
