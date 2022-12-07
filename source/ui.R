@@ -31,7 +31,18 @@ page_one <- tabPanel(
 "),
     p(),
     h4("What data was analyzed?"),
-    p("add text here..."),
+    p("The first dataset is titled “Air Transport CO2 Emissions,” and is published on the OECD Statistics. The Organisation for Economic Co-operation and Development (OCED) is an international organizations that supports economic and free market growth through its work supported by 38 countries globally. 
+      This information was compiled by the International Civil Aviation Organization (ICAO), an agency of the United Nations. This dataset provides information about the CO2 emissions of countries from 2014 to 2018. "),
+   p(),
+   
+    p("The second dataset we used is titled TSA Checkpoint travel numbers. This dataset was compiled by the Transportation Safety Administration (TSA) in response to the COVID-19 pandemic, collecting data on how air travel was impacted. 
+      The Transportation Safety Administration is an agency of the US federal government who oversees all transportation in and out of the US. The dataset has been compiling data related to passenger influx since December of 2021 and continues to stay updated to date on a daily basis."),
+    
+    p(),
+    
+    p("Finally, our third dataset is titled “Carbon Dioxide Emissions of the World” . The data was compiled by Ankan Hore, a data analyst from India with the source being from Climate Watch Data.  Climate Watch Data is seen as a leader in the climate change space and is partnered with global organizations and corporations to aid in their efforts. 
+      The dataset provides information regarding CO2 emissions for countries around the world from 1990 to 2018.  "),
+    
     p(),
     h4("What are the key findings?"),
     p("1. The United States, China, and the UAE are shown to have the highest CO2 emissions. 
