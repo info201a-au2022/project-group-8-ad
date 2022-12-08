@@ -4,7 +4,6 @@ library("leaflet")
 library("RColorBrewer")
 library("rgdal")
 library("ggplot2")
-library("maps")
 library("sp")
 
 #Read Flight Data
@@ -28,16 +27,10 @@ flight_data$Country[flight_data$Country == "Türkiye"] <- "Turkey"
 
 #Read Shape Data
 world_spdf <- readOGR( 
-  dsn= paste0("../source/world_shape_file/") , 
+  dsn= paste0("world_shape_file/") , 
   layer="TM_WORLD_BORDERS_SIMPL-0.3",
   verbose=FALSE
 )
-
-#Filter Flight Data
-filtered_flight_data <- flight_data %>% 
-  group_by(Country) %>% 
-  filter(Value == max(Value)) %>%
-  distinct(Value)
 
 get_filtered_flight_data <- function(year) {
   filtered_flight_data <- flight_data %>% 
@@ -47,40 +40,6 @@ get_filtered_flight_data <- function(year) {
     distinct(Value)
   return(filtered_flight_data)
 }
-
-#Combine dataframes
-colnames(filtered_flight_data)[1] <- "NAME"
-world_spdf_with_values <- sp::merge(world_spdf, filtered_flight_data, by = "NAME", all=F)
-
-#Create Map
-mybins <- c(0,500000,1000000,5000000, 10000000,50000000,250000000)
-mypalette <- colorBin( palette="YlOrBr", domain=world_spdf_with_values@data$Value, na.color="transparent", bins = mybins)
-
-mytext <- paste(
-  "Country: ", world_spdf_with_values@data$NAME,"<br/>", 
-  "Value: ", round(world_spdf_with_values@data$Value),
-  sep="") %>%
-  lapply(htmltools::HTML)
-
-value_map <- leaflet(world_spdf_with_values) %>% 
-  addTiles()  %>% 
-  setView( lat=10, lng=0 , zoom=2) %>%
-  addPolygons( 
-    fillColor = ~mypalette(Value), 
-    stroke=TRUE, 
-    fillOpacity = 0.9, 
-    color="black", 
-    weight=0.9,
-    label = mytext,
-    labelOptions = labelOptions( 
-      style = list("font-weight" = "normal", padding = "3px 8px"), 
-      textsize = "13px", 
-      direction = "auto"
-    )
-  ) %>%
-  addLegend( pal=mypalette, values=~Value, opacity=0.9, title = "Value", position = "bottomleft" )
-
-value_map
 
 get_filtered_flight_data_map <- function(year) {
   filtered_flight_data <- get_filtered_flight_data(year)

@@ -201,9 +201,12 @@ get_co2_chart <- function(upper_count, lower_count) {
   colnames(country_df)[1] <- "Country"
   country_emissions <- left_join(country_df, country_emission_value, by = "Country")
   country_emission_values <- left_join(country_emissions, country_emission_all, by = "Country")
-
+  
+  colnames(country_emission_values)[2] <- "All Possible Factors"
+  colnames(country_emission_values)[3] <- "Airplanes"
+  
   country_emission_values.melt <- reshape2::melt(country_emission_values, id = "Country")
-
+  
   chart_3 <- ggplot(data = country_emission_values.melt, aes(x = Country, y = value, fill = variable))
   chart_3 <- chart_3 + geom_col(position = "dodge")
   chart_3 <- chart_3 + theme_classic()
@@ -213,7 +216,7 @@ get_co2_chart <- function(upper_count, lower_count) {
                             , x = "Countries"
                             , y = "CO2 Emissions") 
   chart_3 <- chart_3 + scale_y_log10()
-
+  
   chart_3 <- chart_3 + coord_flip()
   return(chart_3)
 }

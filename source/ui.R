@@ -1,22 +1,21 @@
 library(shiny)
 library(ggplot2)
-library(DT)
+library(markdown)
 
 source("data_vis_mustafa.R")
-<<<<<<< HEAD
 source("data_vis_antong.R")
-=======
-source("data_vis_Xiaoyu.R")
->>>>>>> 5ec4f7a880b13574a5f2e366c6d94859845e1764
+source("data_vis_xiaoyu.R")
 
 page_one <- tabPanel(
   "Introduction",
-  titlePanel("Introduction"),
+  titlePanel(img(src = "plane.jpg")),
   
-  p("Almost every year over 22 million flights occur worldwide (Salas, 2022) with nearly 90 million people (Aviation Beyond Borders) working together to achieve this goal. 
-    Although air travel is seen as one of the safest and most efficient ways of travel, it comes at a cost of byproducts such as CO2 emissions. "),
+  headerPanel("Introduction"),
   
   mainPanel(
+    p("Almost every year over 22 million flights occur worldwide (Salas, 2022) with nearly 90 million people (Aviation Beyond Borders) working together to achieve this goal. 
+    Although air travel is seen as one of the safest and most efficient ways of travel, it comes at a cost of byproducts such as CO2 emissions. "),
+    p(),
     h4("What is the problem domain?"),
     p("With climate change harming the planet, one of the main concerns with air travel is how much CO2 is produced. CO2 is directly linked to warming the atmosphere, shrinking the ozone layer, and eroding the earth’s natural protection against harmful UV rays from the sun. Some of the negative can be seen through melting glaciers that contribute to rising sea levels. 
       The outcome comes at a cost of damaging, engulfing, and even submerging natural ecosystems and pacific islands. 
@@ -27,43 +26,49 @@ page_one <- tabPanel(
   
   What countries produce the  highest and lowest CO2 emissions?
   How did COVID-19 play a role in affecting CO2 emissions?
-  Does the number of domestic and international flights in a country impact total CO2 emissions?
-"),
+  Does the number of domestic and international flights in a country impact total CO2 emissions?"),
     p(),
     h4("What data was analyzed?"),
-    p("The first dataset is titled “Air Transport CO2 Emissions,” and is published on the OECD Statistics. The Organisation for Economic Co-operation and Development (OCED) is an international organizations that supports economic and free market growth through its work supported by 38 countries globally. 
-      This information was compiled by the International Civil Aviation Organization (ICAO), an agency of the United Nations. This dataset provides information about the CO2 emissions of countries from 2014 to 2018. "),
-   p(),
-   
-    p("The second dataset we used is titled TSA Checkpoint travel numbers. This dataset was compiled by the Transportation Safety Administration (TSA) in response to the COVID-19 pandemic, collecting data on how air travel was impacted. 
-      The Transportation Safety Administration is an agency of the US federal government who oversees all transportation in and out of the US. The dataset has been compiling data related to passenger influx since December of 2021 and continues to stay updated to date on a daily basis."),
-    
+    p("The first dataset is titled “Air Transport CO2 Emissions,” and is published on the
+      OECD Statistics. The Organisation for Economic Co-operation and Development (OCED) is
+      an international organizations that supports economic and free market growth through
+      its work supported by 38 countries globally. This information was compiled by the
+      International Civil Aviation Organization (ICAO), an agency of the United Nations.
+      This dataset provides information about the CO2 emissions of countries from 2014 to 2018."),
     p(),
-    
-    p("Finally, our third dataset is titled “Carbon Dioxide Emissions of the World” . The data was compiled by Ankan Hore, a data analyst from India with the source being from Climate Watch Data.  Climate Watch Data is seen as a leader in the climate change space and is partnered with global organizations and corporations to aid in their efforts. 
-      The dataset provides information regarding CO2 emissions for countries around the world from 1990 to 2018.  "),
-    
+    p("The second dataset we used is titled “TSA Checkpoint travel numbers”. This dataset was
+      compiled by the Transportation Safety Administration (TSA) in response to the COVID-19
+      pandemic, collecting data on how air travel was impacted. The Transportation Safety
+      Administration is an agency of the US federal government who oversees all transportation
+      in and out of the US. The dataset has been compiling data related to passenger influx
+      since December of 2021 and continues to stay updated to date on a daily basis."),
+    p(),
+    p("Finally, our third dataset is titled “Carbon Dioxide Emissions of the World” . The data 
+      was compiled by Ankan Hore, a data analyst from India with the source being from Climate
+      Watch Data. Climate Watch Data is seen as a leader in the climate change space and is
+      partnered with global organizations and corporations to aid in their efforts. The dataset
+      provides information regarding CO2 emissions for countries around the world from 1990 to
+      2018."),
     p(),
     h4("What are the key findings?"),
     p("1. The United States, China, and the UAE are shown to have the highest CO2 emissions. 
     All three of these countries are major contributors when it comes to international trade. 
     This could point to trade being a bigger aspect of CO2 emissions than previously thought. 
     Through this lens, experts can reframe efforts in reducing emissions and focus on where the greatest CO2 emissions are in international trading."),   
-
-  p("2. In 2020 the amount of passengers dramatically decreased in the wake of covid. Even several years since the start of the pandemic, the passenger rates have not returned to pre covid levels. 
+    
+    p("2. In 2020 the amount of passengers dramatically decreased in the wake of covid. Even several years since the start of the pandemic, the passenger rates have not returned to pre covid levels. 
   The decreased passenger levels could indicate that CO2 emissions have decreased because of lower passenger rates."),  
-  
-  p("3. In comparing flight transportation with over all transportation per country, countries with higher flight emissions also lead with overall transportation CO2 emissions. 
+    
+    p("3. In comparing flight transportation with over all transportation per country, countries with higher flight emissions also lead with overall transportation CO2 emissions. 
   The finding also showed that emissions from flights did not make up over half of overall emissions from the countries analyzed. 
-  Although air transportation makes up a substantial part of CO2 emissions, there are still other major factors in CO2 emissions outside of flights.  
-"),
+  Although air transportation makes up a substantial part of CO2 emissions, there are still other major factors in CO2 emissions outside of flights."),
     p()
   )
 )
 
 page_two <- tabPanel(
   "Interactive Panel One", 
-  headerPanel("Interactive Panel One"),
+  headerPanel("What countries produce the lowest/highest CO2 emissions?"),
   sidebarPanel(
     sliderInput("map_slider", label = h3("Select Year"), min = 2014, 
                 max = 2022, value = 2014)
@@ -86,15 +91,27 @@ page_two <- tabPanel(
 
 page_three <- tabPanel(
   "Interactive Panel Two", 
-  headerPanel("Interactive Panel Two"),
+  headerPanel("How does the number of aircraft flights affect co2 emissions?"),
   sidebarPanel(
     sliderInput("flight_count_slider", label = h3("flight count"), min = 100, max = 200, value = c(140, 160))
   ),
   mainPanel(
-<<<<<<< HEAD
-     h4("Chart Summary"),
-     p("Then, regarding our second research question, which aims to investigate whether the number of aircraft flights in a country determines its total level of CO2 emissions, we present information from two perspectives, showing the total number of flights in each country from 2014 to 2018 and the comparison of CO2 emissions between aircraft and all factors that can generate CO2 gases. And to deepen the criticality of the studied relationship between flights and CO2 emissions, which is the main objective of this issue, we as page designers set up a slider range capable of controlling the number of flights so that one can simultaneously view the countries corresponding to any number range in the range of 100 to 200 of this number of flights and their corresponding total air transport and CO2 emissions (generated by all possible factors). Overall, this page is intended to provide ease of observation and to highlight the impact of aircraft activation on CO2 emissions.")
-)
+    plotOutput("flight_bar", height = "650px"),
+    plotOutput("co2_bar", height = "650px"),
+    h4("Chart Summary"),
+    p("Then, regarding our second research question, which aims to investigate ‘whether the
+      number of aircraft flights in a country determines its total level of CO2 emissions,’
+      we present information from two perspectives, showing the total number of flights in
+      each country from 2014 to 2018 and the comparison of CO2 emissions between aircraft and
+      all factors that can generate CO2 gases. And to deepen the criticality of the studied
+      relationship between flights and CO2 emissions, which is the main objective of this issue,
+      we as page designers set up a slider range capable of controlling the number of flights
+      so that one can simultaneously view the countries corresponding to any number range
+      between 100 and 200 for this number of flights and their corresponding total air
+      transport and CO2 emissions (generated by all possible factors). Overall, this page is
+      intended to provide ease of observation and to highlight the impact of aircraft
+      activation on CO2 emissions.")
+  )
 )
 page_four <- tabPanel(
   "Interactive Panel Three", 
@@ -102,20 +119,22 @@ page_four <- tabPanel(
   sidebarPanel(
     checkboxGroupInput("yearcheckGroup", label = h3("Year Checkbox"), 
                        choices = list("2019" = 2019, "2020" = 2020, "2021" = 2021, "2022" = 2022),
-                       selected = 1),
+                       selected = 2019),
   ),
   mainPanel(
-plotOutput("CO2_emissions"), 
-plotOutput("number_passengers"),
-h4("Chart summary"),
-p("Regarding to our second research question, this chart compares the number of passengers in the U.S during the COVID-19 
-  and compares the CO2 emissions value during COVID-19 in order to get how COVID-19 impact the flights
-  and thus the CO2 emission. The blue one is Passengers data and the orange one is CO2 emissions data. The four years that are used are 2019, 2020, 2021 and 2022. We set up a checkbox in order for us to choose from the range of year 2019 to year 2022
-  . We can see the data for a single year or a combination of several years.")
-=======
-    plotOutput("flight_bar", height = "650px"),
-    plotOutput("co2_bar", height = "650px")
->>>>>>> 5ec4f7a880b13574a5f2e366c6d94859845e1764
+    plotOutput("CO2_emissions"), 
+    plotOutput("number_passengers"),
+    h4("Chart summary"),
+    p("Finally, for our last research question, we would like to investigate
+      ‘How did the number of flights during COVID-19 play a role in changing CO2 emissions.’
+      Therefore, here we compared the number of passengers in the U.S. with the value of CO2
+      emissions during the pandemic, that is, from 2019 to 2022. In this section, we made two
+      charts showing CO2 emissions data and airplane passenger numbers respectively.
+      To give the viewer a better visual representation of how the pandemic affects and
+      determines the trends in the number of flights and CO2 emissions, in this section
+      there is a ‘Year Checkbox’ that one can select from a range of 2019 to 2022 to check
+      the data for a single year or for multiple years. Overall, the “Year checkbox” allows
+      us to see the flow of changes more clearly in these two data.")
   )
 )
 
@@ -146,10 +165,9 @@ page_five <- tabPanel(
 
 page_six <- tabPanel(
   "Report",
-  titlePanel("Report"),
   
   mainPanel(
-    p("add text here...")
+    includeMarkdown("report_page.md")
   )
 )
 
