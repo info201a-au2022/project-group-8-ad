@@ -7,9 +7,9 @@ as follows:
 
 |Report | Brief Description|
 |---------------| -----------------|
-|[Project Proposal (FIX ME!)](./xxx) | A brief description of your P1:Project Proposal
-|[Exploratory Data Analysis](./xxx) | A brief description of your exploratory data analyis report
-|[Interactive Vizualizaiton](./xxx) | A brief description of your final report. 
+|[Project Proposal (FIX ME!)](https://canvas.uw.edu/courses/1581407/assignments/7723738) | (Changed topic, didn't have time to re do project proposal for new project. we received full points for the project proposal regarding our old topic.)
+|[Exploratory Data Analysis](https://github.com/info201a-au2022/project-group-8-ad/blob/main/docs/index.Rmd) | In this analysis we focus on compiling our data and creating visualizations regarding our topic.
+|[Interactive Vizualizaiton](https://mmk49.shinyapps.io/source/) | Through our final report, we explore CO2 trends when it comes to Air transportation and travel. We thought through different aspects of the topic from coming up with our own hypotheses, thinking through stake holders and the various uses of our analysis. Our report, visualizations, and overview of the topic are hosted by shiny and available for public access on the internet.  
 
 
 ## DEVELOPER Note 0
