@@ -1,0 +1,13 @@
+name: source
+title: source
+username:
+account: mmk49
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 7825562
+bundleId: 6598351
+url: https://mmk49.shinyapps.io/source/
+when: 1670319301.12562
+lastSyncTime: 1670319301.12564
+asMultiple: FALSE
+asStatic: FALSE
