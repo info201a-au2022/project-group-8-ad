@@ -9,14 +9,8 @@ reports are as follows:
 |----------------------------------|--------------------------------------|
 | [Project Proposal](https://canvas.uw.edu/courses/1581407/assignments/7723738)                     | (Changed topic, didn't have time to re do project proposal for new project. we received full points for the project proposal regarding our old topic.)                                                                                                                                                                                                                                    |
 | [Exploratory Data Analysis](https://github.com/info201a-au2022/projet-group-8-ad/blob/main/docs/index.Rmd) | In this analysis we focus on compiling our data and creating visualizations regarding our topic.                                                                                                                                                                                                                                                                                          |
-| [Interactive Vizualizaiton](https://mmk49.shinyapps.io/source/)                                             | Through our final report, we explore CO2 trends when it comes to Air transportation and travel. We thought through different aspects of the topic from coming up with our own hypotheses, thinking through stake holders and the various uses of our analysis. Our report, visualizations, and overview of the topic are hosted by shiny and available for public access on the internet. |
+| [Interactive Vizualization](https://mmk49.shinyapps.io/source/)                                             | Through our final report, we explore CO2 trends when it comes to Air transportation and travel. We thought through different aspects of the topic from coming up with our own hypotheses, thinking through stake holders and the various uses of our analysis. Our report, visualizations, and overview of the topic are hosted by shiny and available for public access on the internet. |
 
-## DEVELOPER Note 0
-
--   If the `/docs` directory or the notes below are confusing, please
-    don't worry - We will cover all of the things below in lecture
-    and/or lab.
--   As always, ask your TA or TEAMS if you have questions.
 
 ## DEVELOPER Note 1
 
@@ -44,22 +38,4 @@ webserver that GitHub makes available to us 1. `final-project` is the
 repository name 1. `xxx` is your GitHub username 1. `index.htlm` is the
 document you would like to view
 
-## DEVELOPER Note 2: IMPORTANT: Setting up your webserver
 
-1.  You must make your repository *public*. To make it public: Go to
-    your GitHub repository \> Settings (top-right) \> Change visibility
-    (Danger Zone) \> Make Public
-2.  You must set the pages source to /docs. To do so: Got your GitHub
-    repository \> Pages (bottom-left) \> Select "/docs" from the
-    pulldown menu
-3.  If you run into trouble, pleaes ask your TA or post on Teams - as
-    usual, it is straigthforward once you know how but can be tricky to
-    figure out the first time.
-
-## DEVELOPER Note 3: Clear and Concise Documentation
-
--   Please remember your audience (prospective employers, open source
-    colleagues, TAs, Instructors). Therefore, aim for clarity and
-    conciseness.
--   When done, be sure to delete these NOTE sections and the example CSV
-    file (which are intended for you, of course, not your audience!)
