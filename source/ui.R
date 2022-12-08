@@ -71,7 +71,8 @@ page_two <- tabPanel(
   headerPanel("What countries produce the lowest/highest CO2 emissions?"),
   sidebarPanel(
     sliderInput("map_slider", label = h3("Select Year"), min = 2014, 
-                max = 2022, value = 2014)
+                max = 2022, value = 2014),
+    p("Data from: AIRTRANS_CO2.csv")
   ),
   mainPanel(
     leafletOutput("co2_map"),
@@ -93,7 +94,8 @@ page_three <- tabPanel(
   "Interactive Panel Two", 
   headerPanel("How does the number of aircraft flights affect co2 emissions?"),
   sidebarPanel(
-    sliderInput("flight_count_slider", label = h3("flight count"), min = 100, max = 200, value = c(140, 160))
+    sliderInput("flight_count_slider", label = h3("flight count"), min = 100, max = 200, value = c(140, 160)),
+    p("Data from: AIRTRANS_CO2.csv, historical_emissions.csv")
   ),
   mainPanel(
     plotOutput("flight_bar", height = "650px"),
@@ -120,6 +122,7 @@ page_four <- tabPanel(
     checkboxGroupInput("yearcheckGroup", label = h3("Year Checkbox"), 
                        choices = list("2019" = 2019, "2020" = 2020, "2021" = 2021, "2022" = 2022),
                        selected = 2019),
+    p("Data from: AIRTRANS_CO2.csv, Air_Travel_Passengers.csv")
   ),
   mainPanel(
     plotOutput("CO2_emissions"), 
@@ -167,7 +170,7 @@ page_six <- tabPanel(
   "Report",
   
   mainPanel(
-    includeMarkdown("report_page.md")
+    includeMarkdown("../docs/p01-proposal.md")
   )
 )
 
