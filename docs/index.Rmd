@@ -1,7 +1,7 @@
 ---
-title: "Your Project Title"
-author: "project team members"
-date: "1/22/2022"
+title: "Analysis of CO2 Emissions from Air Transport around the world"
+author: "Mustafa, Xiaoyu, Rachel, Antong"
+date: "12/08/2022"
 output: html_document
 ---
 
@@ -9,24 +9,38 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r source, echo=FALSE}
+```{r source, include=FALSE}
 source("../source/data_vis_antong.R")
 source("../source/data_vis_mustafa.R")
 source("../source/data_vis_xiaoyu.R")
-# source("../source/table_rachel.R")
+source("../source/info\ group\ project-\ table.R")
 ```
+**Dynamic Paragraph**
+
+In analyzing CO2 emissions, the datasets we used returned a large amount of data. Therefore, we decided to filter out a lot of information to focus essential items but also to save internal space. In embarking on this project, one of our hypotheses was that more developed countries emit more CO2 emissions than less developed countries. To explore this, we chose to focus on the United States as the United States is seen as a global leader on many levels. Therefore, we chose to filter out countries and only focus on the United States. Recognizing the large amount of data we found, we chose to focus on years 2014 to 2018. This particular table does not address how the pandemic impacted air travel. The datasets used in the table had to do with air transportation when it came to passengers and departures flights. Additionally another dataset provided a description of from what situation the emission originated. In returning a level of emissions, we made sure to include the Value column which shows the amount of CO2 released and the source of emissions to explain the context. Another aspect we were interested in looking into was how travel impacted CO2 emissions. In recognizing the various purposes of an airplane we chose to filter this dataset and view only passenger flights. These flights had at least one stop in the US.
+
+**How did COVID-19 play a role in CO2 emissions?**
 
 ```{r antong, echo=FALSE}
-data_visualization_1
-data_visualization_2
+data_visualization_one(c(2019,2020,2021,2022))
+data_visualization_2(c(2019,2020,2021,2022))
 ```
 
+**What countries produce the lowest/highest CO2 emissions?**
 
 ```{r mustafa, echo=FALSE}
-value_map
+get_filtered_flight_data_map(2022)
 ```
 
-```{r xiaoyu, echo=FALSE}
-chart_3
-flight_bar_chart
+**How does the number of aircraft flights affect co2 emissions?**
+
+```{r xiaoyu, echo=FALSE, warning=FALSE}
+get_flight_chart(150, 130)
+get_co2_chart(150, 130)
+```
+
+**Dataset**
+
+```{r rachel, echo=FALSE}
+head(smol_all_combined, 25)
 ```

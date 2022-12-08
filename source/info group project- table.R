@@ -7,11 +7,9 @@ library(tidyverse)
 #Co2 Dataset
 Co2_Dataset <- read.csv("../data/AIRTRANS_CO2.csv")
 
-View(Co2_Dataset)
+# View(Co2_Dataset)
 
-Co2_Dataset <- Co2_Dataset %>% 
-  rename("Year" = Time )
-
+colnames(Co2_Dataset)[15] <- "Year"
 # View(Co2_Dataset)
 
 
@@ -25,6 +23,7 @@ adjusted_co2 <- Co2_Dataset %>%
     Flight.type,
     Year,
     Pollutant,
+    SOURCE,
     Source.of.emissions,
     Value
   )
@@ -42,16 +41,12 @@ passenger_dataset <- read.csv("../data/International_Report_Passengers.csv")
 
 # View(passenger_dataset)
 
-
-passenger_dataset <- passenger_dataset %>% 
-  rename(
-    "US_gateway_Code" = usg_apt,
-    "Gateway_world_areacode" = usg_wac,
-    "US_Airport_ID" = usg_apt_id,
-    "Foreign_gateway_ID" = fg_apt_id,
-    "Foreign_gateway_world_code" = fg_wac,
-    "Foreign_Airport_code" = fg_apt
-  )
+colnames(passenger_dataset)[4] <- "US_Airport_ID"
+colnames(passenger_dataset)[5] <- "US_gateway_Code"
+colnames(passenger_dataset)[6] <- "Gateway_world_areacode"
+colnames(passenger_dataset)[7] <- "Foreign_gateway_ID"
+colnames(passenger_dataset)[8] <- "Foreign_Airport_code"
+colnames(passenger_dataset)[9] <- "Foreign_gateway_world_code"
 
 passenger_dataset_1 <- passenger_dataset %>% 
   summarize(
@@ -61,8 +56,8 @@ passenger_dataset_1 <- passenger_dataset %>%
     Total
   ) %>% 
   subset(Year> "2016" & Year < "2021")
-  
-  View(passenger_dataset_1)
+
+# View(passenger_dataset_1)
 
 passenger_dataset_smol <- head(passenger_dataset_1, 200)
 
@@ -73,17 +68,12 @@ departure_dataset <- read.csv("../data/International_Report_Departures.csv")
 
 # View(departure_dataset)
 
-
-
-departure_dataset <- departure_dataset %>% 
-  rename(
-    "US_gateway_Code" = usg_apt,
-    "Gateway_world_areacode" = usg_wac,
-    "US_Airport_ID" = usg_apt_id,
-    "Foreign_gateway_ID" = fg_apt_id,
-    "Foreign_gateway_world_code" = fg_wac,
-    "Foreign_Airport_code" = fg_apt
-  )
+colnames(departure_dataset)[4] <- "US_Airport_ID"
+colnames(departure_dataset)[5] <- "US_gateway_Code"
+colnames(departure_dataset)[6] <- "Gateway_world_areacode"
+colnames(departure_dataset)[7] <- "Foreign_gateway_ID"
+colnames(departure_dataset)[8] <- "Foreign_Airport_code"
+colnames(departure_dataset)[9] <- "Foreign_gateway_world_code"
 
 departure_dataset_1 <- departure_dataset %>% 
   summarize(
@@ -93,8 +83,8 @@ departure_dataset_1 <- departure_dataset %>%
     Total
   ) %>% 
   subset(Year> "2016" & Year < "2021")
-  
-View(departure_dataset_1)
+
+# View(departure_dataset_1)
 
 departure_dataset_smol <- head(departure_dataset_1, 200)
 
@@ -118,15 +108,4 @@ smol_all_combined <-
     by = "Year"
   )
 
-View(smol_all_combined)
-
-
-
-
-
-
-
-
-
-
-
+# View(smol_all_combined)
