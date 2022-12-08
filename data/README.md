@@ -7,18 +7,13 @@ In our project, we use the following data files and Application Programming Inte
 |---------------| -----------------|
 |[example.cvs](./example.csv) | This file contains temperature data. (See report for details.)
 |[another-file](./filename2.csv) | Description ... 
+(AIRTRANS_CO2.csv) | The first data set is titled “Air Transport CO2 Emissions,” and is published on the OECD Statistics. This information was compiled by the International Civil Aviation Organization (ICAO), an agency of the United Nations. This data set provides information about the CO2 emissions of countries from 2014 to 2018. 
 
-## Application Programming Interfaces (API) (TODO: Update/delete for your PROJECT)
 
-* **New York Times Books API**. The _New York Times_ provides data for Best
-Sellers lists and the books that have been reviewed in the New York Times. An overview of the API that we use in our project is available here: [Books API](https://developer.nytimes.com/docs/books-product/1/overview). For more about developing apps with New York Times data see: [NYTimes Developers](https://developer.nytimes.com/).
+(Air_Travel_Passenger.csv) | The second data set we used is titled "TSA Checkpoint travel numbers". This data set was compiled by the Transportation Safety Administration (TSA) in response to the COVID-19 pandemic, collecting data on how air travel was impacted. The data set has been compiling data related to passenger influx since December of 2021 and continues to stay updated to date on a daily basis. 
 
-# Developer notes: About the `/data` Directory (TODO: Read and delete this section)
 
-* Use the `/data` directory to store any data that you using in your project (for example, CSV files)
-* Edit this `README.md` file and summarize your data files
-* If you are using APIs to access data, summarize them, providing specific information
-* See examples above.
-* Please remember your audience (prospective employers, open source colleagues, TAs, Instructors). Therefore, 
-aim for clarity and conciseness.
-* When done, be sure to delete these NOTE sections and the example CSV file (which are intended for you, of course, not your audience!)
+(historical_emissions.csv) | Finally, our third dataset is titled “Carbon Dioxide Emissions of the World” . The data was compiled by Ankan Hore, a data analyst from India with the source being from Climate Watch Data. The dataset provides information regarding CO2 emissions for countries around the world from 1990 to 2018. 
+
+
+
