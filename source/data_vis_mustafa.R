@@ -73,7 +73,7 @@ get_filtered_flight_data_map <- function(year) {
         direction = "auto"
       )
     ) %>%
-    addLegend( pal=mypalette, values=~Value, opacity=0.9, title = "Value", position = "bottomleft" )
+    addLegend( pal=mypalette, values=~Value, opacity=0.9, title = "Value (tonnes of CO2)", position = "bottomleft" )
   
   value_map
 }
