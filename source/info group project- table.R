@@ -25,7 +25,6 @@ adjusted_co2 <- Co2_Dataset %>%
     Flight.type,
     Year,
     Pollutant,
-    SOURCE,
     Source.of.emissions,
     Value
   )
@@ -119,7 +118,7 @@ smol_all_combined <-
     by = "Year"
   )
 
-# View(smol_all_combined)
+View(smol_all_combined)
 
 
 
